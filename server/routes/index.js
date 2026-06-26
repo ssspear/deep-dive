@@ -1,3 +1,4 @@
 const example = require('./example');
+const creatures = require('./creatures');
 
-module.exports = { example }
+module.exports = { example, creatures }
