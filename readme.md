@@ -16,6 +16,14 @@ npm run launch   # start the API (:8000) and the client (:3000)
 npm test         # run server + client test suites
 ```
 
+### Linting & formatting (client)
+
+```bash
+cd client
+npm run lint     # run ESLint (also checked in CI)
+npm run format   # auto-format with Prettier
+```
+
 The client is a [Vite](https://vitejs.dev/) + React 19 app (`client/`) and the API
 is an Express 5 server (`server/`). The client reads the API URL from
 `VITE_API_URL` and falls back to `http://localhost:8000/api/example`.
