@@ -8,8 +8,12 @@ function App() {
 
   useEffect(() => {
     fetch(api)
-      .then((res) => res.json())
-      .then((payload) => setSeaCreatures(payload.data));
+      .then(async (res) => {
+        const payload = await res.json();
+        return res.ok && Array.isArray(payload.data) ? payload.data : [];
+      })
+      .then(setSeaCreatures)
+      .catch(() => setSeaCreatures([]));
   }, []);
 
   return (

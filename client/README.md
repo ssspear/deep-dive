@@ -30,6 +30,6 @@ The API base URL is read from the `VITE_API_URL` environment variable and
 defaults to `http://localhost:8000/api/example`. Create a `.env` file in this
 directory to override it:
 
-```
+```env
 VITE_API_URL=http://localhost:8000/api/example
 ```

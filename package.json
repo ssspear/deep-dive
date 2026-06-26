@@ -4,10 +4,10 @@
   "description": "Congratulations and welcome to your first day at Blue Ocean! We are literally an underwater agile software development company.",
   "main": "index.js",
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "scripts": {
-    "setup": "cd ./client && npm install ; cd ../server && npm install",
+    "setup": "npm --prefix ./client install && npm --prefix ./server install",
     "test": "cd ./server && npm test && cd ../client && npm test",
     "launch": "cd ./server && node bin/www & cd ../client && npm run-script start &",
     "commit": "git-cz"

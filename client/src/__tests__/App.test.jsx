@@ -6,6 +6,7 @@ import App from '../App';
 describe('App', () => {
   beforeEach(() => {
     vi.spyOn(global, 'fetch').mockResolvedValue({
+      ok: true,
       json: async () => ({ data: ['dolphins', 'manatees', 'sea turtles'] }),
     });
   });
