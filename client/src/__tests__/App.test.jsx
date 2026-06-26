@@ -6,7 +6,10 @@ describe('App', () => {
   beforeEach(() => {
     vi.spyOn(globalThis, 'fetch').mockResolvedValue({
       ok: true,
-      json: async () => ({ data: ['dolphins', 'manatees', 'sea turtles'] }),
+      json: async () => ({
+        data: ['dolphins', 'manatees', 'sea turtles'],
+        extract: 'Dolphins are highly intelligent aquatic mammals.',
+      }),
     });
   });
 
@@ -56,5 +59,23 @@ describe('App', () => {
       .getByRole('img', { name: /sea turtles photo/i })
       .getAttribute('src');
     expect(secondSrc).not.toEqual(firstSrc);
+  });
+
+  it('shows a loading indicator until the image finishes loading', async () => {
+    render(<App />);
+    fireEvent.click(await screen.findByRole('button', { name: /dolphins/i }));
+    expect(screen.getByText(/loading image/i)).toBeInTheDocument();
+  });
+
+  it('fetches and displays a fun fact for the selected creature', async () => {
+    render(<App />);
+    fireEvent.click(await screen.findByRole('button', { name: /dolphins/i }));
+
+    expect(
+      await screen.findByText(/highly intelligent aquatic mammals/i)
+    ).toBeInTheDocument();
+    expect(global.fetch).toHaveBeenCalledWith(
+      'https://en.wikipedia.org/api/rest_v1/page/summary/Dolphin'
+    );
   });
 });
