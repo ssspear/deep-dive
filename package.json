@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "Congratulations and welcome to your first day at Blue Ocean! We are literally an underwater agile software development company.",
   "main": "index.js",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "setup": "cd ./client && npm install ; cd ../server && npm install",
-    "test": "echo pwd && cd ./client && npm test",
+    "test": "cd ./server && npm test && cd ../client && npm test",
     "launch": "cd ./server && node bin/www & cd ../client && npm run-script start &",
     "commit": "git-cz"
   },
@@ -20,9 +23,8 @@
   },
   "homepage": "https://github.com/gSchool/blue-ocean-starter#readme",
   "devDependencies": {
-    "commitizen": "^3.0.7",
-    "cz-conventional-changelog": "^2.1.0",
-    "nyc": "^13.3.0"
+    "commitizen": "^4.3.2",
+    "cz-conventional-changelog": "^3.3.0"
   },
   "config": {
     "commitizen": {
