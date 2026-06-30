@@ -42,9 +42,7 @@ describe('App', () => {
   });
 
   it('requests a different image on each click', async () => {
-    vi.spyOn(Math, 'random')
-      .mockReturnValueOnce(0.1)
-      .mockReturnValueOnce(0.9);
+    vi.spyOn(Math, 'random').mockReturnValueOnce(0.1).mockReturnValueOnce(0.9);
     render(<App />);
     const link = await screen.findByRole('button', { name: /sea turtles/i });
 
@@ -72,10 +70,10 @@ describe('App', () => {
     fireEvent.click(await screen.findByRole('button', { name: /dolphins/i }));
 
     expect(
-      await screen.findByText(/highly intelligent aquatic mammals/i)
+      await screen.findByText(/highly intelligent aquatic mammals/i),
     ).toBeInTheDocument();
-    expect(global.fetch).toHaveBeenCalledWith(
-      'https://en.wikipedia.org/api/rest_v1/page/summary/Dolphin'
+    expect(globalThis.fetch).toHaveBeenCalledWith(
+      'https://en.wikipedia.org/api/rest_v1/page/summary/Dolphin',
     );
   });
 });
