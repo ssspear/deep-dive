@@ -24,6 +24,15 @@ Builds the app for production into the `dist/` folder.
 
 Serves the production build locally to preview it.
 
+### `npm run lint`
+
+Runs [ESLint](https://eslint.org/) against the project. This check also runs in
+CI on every push and pull request.
+
+### `npm run format`
+
+Auto-formats all source files with [Prettier](https://prettier.io/).
+
 ## Configuration
 
 The API base URL is read from the `VITE_API_URL` environment variable and

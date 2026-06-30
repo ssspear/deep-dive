@@ -1,11 +1,10 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import App from '../App';
 
 describe('App', () => {
   beforeEach(() => {
-    vi.spyOn(global, 'fetch').mockResolvedValue({
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue({
       ok: true,
       json: async () => ({ data: ['dolphins', 'manatees', 'sea turtles'] }),
     });
@@ -18,7 +17,7 @@ describe('App', () => {
   it('renders the heading', () => {
     render(<App />);
     expect(
-      screen.getByRole('heading', { name: /welcome to blue ocean/i })
+      screen.getByRole('heading', { name: /welcome to blue ocean/i }),
     ).toBeInTheDocument();
   });
 
