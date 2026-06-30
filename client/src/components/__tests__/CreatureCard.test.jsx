@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import CreatureCard from '../CreatureCard';
@@ -16,7 +15,9 @@ describe('CreatureCard', () => {
   it('renders all five text fields', () => {
     render(<CreatureCard creature={creature} />);
 
-    expect(screen.getByRole('heading', { name: /blue whale/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /blue whale/i }),
+    ).toBeInTheDocument();
     expect(screen.getByText(/open ocean/i)).toBeInTheDocument();
     expect(screen.getByText(/krill/i)).toBeInTheDocument();
     expect(screen.getByText(/endangered/i)).toBeInTheDocument();
@@ -25,7 +26,9 @@ describe('CreatureCard', () => {
 
   it('renders the image with descriptive alt text', () => {
     render(<CreatureCard creature={creature} />);
-    const img = screen.getByRole('button', { name: /view full image of blue whale/i });
+    const img = screen.getByRole('button', {
+      name: /view full image of blue whale/i,
+    });
     expect(img).toBeInTheDocument();
     expect(img.tagName).toBe('IMG');
     expect(img).toHaveAttribute('src', creature.imageUrl);
@@ -34,7 +37,9 @@ describe('CreatureCard', () => {
   it('shows a placeholder when imageUrl is empty', () => {
     render(<CreatureCard creature={{ ...creature, imageUrl: '' }} />);
     expect(screen.getByText(/no image available/i)).toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: /view full image/i })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: /view full image/i }),
+    ).not.toBeInTheDocument();
   });
 
   it('opens the lightbox dialog when the image is clicked', () => {

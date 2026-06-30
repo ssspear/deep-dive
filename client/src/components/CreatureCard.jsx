@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import './CreatureCard.css';
 
 function CreatureCard({ creature }) {
@@ -54,7 +54,8 @@ function CreatureCard({ creature }) {
       )}
 
       <p className="creature-card__field">
-        <span className="creature-card__label">Habitat:</span> {creature.habitat}
+        <span className="creature-card__label">Habitat:</span>{' '}
+        {creature.habitat}
       </p>
       <p className="creature-card__field">
         <span className="creature-card__label">Diet:</span> {creature.diet}
@@ -64,7 +65,8 @@ function CreatureCard({ creature }) {
         {creature.conservationStatus}
       </p>
       <p className="creature-card__field">
-        <span className="creature-card__label">Fun Fact:</span> {creature.funFact}
+        <span className="creature-card__label">Fun Fact:</span>{' '}
+        {creature.funFact}
       </p>
 
       {lightboxOpen && (
