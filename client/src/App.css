@@ -23,6 +23,64 @@
   color: #61dafb;
 }
 
+.creature-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: #0066cc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.creature-link:hover,
+.creature-link:focus-visible {
+  color: #004499;
+}
+
+.creature-image {
+  margin: 1rem 0;
+  max-width: 400px;
+}
+
+.image-frame {
+  position: relative;
+  min-height: 120px;
+}
+
+.creature-image img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.creature-image img.is-loaded {
+  opacity: 1;
+}
+
+.image-status {
+  color: #555;
+}
+
+.image-status--error {
+  color: #b00020;
+}
+
+.creature-image figcaption {
+  margin-top: 0.5rem;
+  font-style: italic;
+  text-transform: capitalize;
+}
+
+.creature-fact {
+  margin-top: 0.5rem;
+  max-width: 400px;
+  line-height: 1.4;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
