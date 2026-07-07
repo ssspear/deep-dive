@@ -4,6 +4,8 @@ import './CreatureCard.css';
 function CreatureCard({ creature }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const triggerRef = useRef(null);
+  const closeBtnRef = useRef(null);
+  const wasOpenRef = useRef(false);
 
   const openLightbox = () => setLightboxOpen(true);
 
@@ -12,15 +14,19 @@ function CreatureCard({ creature }) {
   }, []);
 
   useEffect(() => {
-    if (!lightboxOpen) {
+    if (lightboxOpen) {
+      closeBtnRef.current?.focus();
+    } else if (wasOpenRef.current) {
       triggerRef.current?.focus();
     }
+    wasOpenRef.current = lightboxOpen;
   }, [lightboxOpen]);
 
   useEffect(() => {
     if (!lightboxOpen) return;
     const handleKey = (e) => {
       if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'Tab') e.preventDefault();
     };
     document.addEventListener('keydown', handleKey);
     return () => document.removeEventListener('keydown', handleKey);
@@ -88,6 +94,7 @@ function CreatureCard({ creature }) {
               alt={`${creature.name} enlarged`}
             />
             <button
+              ref={closeBtnRef}
               className="creature-lightbox__close"
               onClick={closeLightbox}
               aria-label="Close"

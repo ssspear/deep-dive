@@ -87,4 +87,20 @@ describe('CreatureCard', () => {
 
     expect(document.activeElement).toBe(trigger);
   });
+
+  it('moves focus to the close button when the lightbox opens', () => {
+    render(<CreatureCard creature={creature} />);
+    fireEvent.click(screen.getByRole('button', { name: /view full image/i }));
+
+    const closeBtn = screen.getByRole('button', { name: /close/i });
+    expect(document.activeElement).toBe(closeBtn);
+  });
+
+  it('opens the lightbox via Enter key on the image trigger', () => {
+    render(<CreatureCard creature={creature} />);
+    const trigger = screen.getByRole('button', { name: /view full image/i });
+    fireEvent.keyDown(trigger, { key: 'Enter' });
+
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+  });
 });
